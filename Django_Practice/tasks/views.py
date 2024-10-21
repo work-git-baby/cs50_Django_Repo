@@ -1,0 +1,18 @@
+from django.shortcuts import render
+from django import forms
+
+tasks = ['foo','bar','baz']
+
+class NewTaskForm(forms.Form):
+    tasks = forms.CharField(label="New Task")
+
+# Create your views here.
+def index(request):
+    return render(request, "tasks/index.html", {
+        'tasks': tasks
+    })
+
+def add(request):
+    return render(request, "tasks/add.html", {
+        'form': NewTaskForm()
+    })
