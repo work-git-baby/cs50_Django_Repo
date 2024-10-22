@@ -1,17 +1,18 @@
 # CS50 Markdown Tutorial
->*Django is an extemely useful framework for making large-scale websites. It is quite comprehensive, so it's a good opportunity to me to practice markdown.*
+>*Django is an extemely useful framework for making large-scale websites. It is quite comprehensive, so it's a good opportunity for me to practice markdown by taking notes.*
 
-## Getting started
-### Initializing the first project
+## Getting started  
+### Initializing the first project  
 
 First things first, add django to your python library.  
-`pip install django`
-  
+`pip install django`  
+
 Then, you need to start a new project. In your terminal, run  
 `django-admin startproject <PROJECT_NAME>`  
 > Note, there is a difference between a **Project** and an **App**  
 > A *project* is the overarching program and manages the overall layout.  
 > An *app* is the individual website cluster.  
+  
   
 You can initialize the project without any project by running the following command:  
 `python manage.py runserver`  
@@ -30,12 +31,14 @@ python manage.py startapp <APP_NAME>
 <br><br>
 
 ### Creating our first app website
-<br>
-We can start by connecting the app to the project. Here's how you do that:<br>
+
+> *For this example, we are going to make an index page.*    
+
+We can start by connecting the app to the project. Here's how you do that:
 
 #### **1. Make your App Known to the Project**
-In your *project* folder, open `settings.py`.
-In the `INSTALLED_APPS` list, add the name of your app as a string. It should look like this:
+In your *project* folder, open `settings.py`. In the `INSTALLED_APPS` list, add the name of your app as a string. It should look like this:
+
  ```
  INSTALLED_APPS = [
     '<YOUR_APP_NAME>',
@@ -47,19 +50,22 @@ In the `INSTALLED_APPS` list, add the name of your app as a string. It should lo
     'django.contrib.staticfiles',
 ]
 ```
-<br>
+
 
 #### **2. Link the App to the Project**
-Still in your project folder, open `urls.py`<br>
-<br>We need to include one more import, `include`, in order for the project to have access to all the different webpages in the app. Your import section should look like this:
+Still in your project folder, open `urls.py`  
+
+We need to include one more import, `include`, in order for the project to have access to all the different webpages in the app. Your import section should look like this:
  ```
  from django.contrib import admin
  from django.urls import include,path
  ```
  Then, in the list labeled `urlpatterns`, add the following code:
+
  ```
  path("<YOUR_APP_NAME>/", include("<APP_NAME>.urls"))
  ```
+
  *This adds your future urls into the overall project. However, the app does not innately have urls. Thus, we need to...*
 
 #### **3. Make a Link for the App Webpage**
@@ -95,7 +101,7 @@ Now, if you run ```python manage.py runserver```,you can visit the index you've 
 
 >*This process of making a website in Django is pretty complex, but it is necessary to be familiar with all these different elements in Django in order to streamline manipulating multiple elements. In the next section, we will talk about the different functionalities provided by Django as presented by Harvard's CS50 course.*
 
-## Functionalites provided by Django
+## Functionalities Provided by Django
 
 
 
