@@ -4,51 +4,46 @@
 ## Getting started
 
 ### Initializing the first project
-
+<br>
 First things first, add django to your python library. 
 ```
 pip install django
 ```
-
-
+<br><br>
 Then, you need to start a new project. In your terminal, run:
 ```
 django-admin startproject <PROJECT_NAME>
 ```
-This is to start the initial project.
->Note, there is a difference between a **Project** and an **App**
->A project is the overarching program and manages the overall layout.
->An app is the individual website cluster.
->You can initialize the project without any project by running the following command:```python manage.py runserver```
+>Note, there is a difference between a **Project** and an **App**<br>
+>A *project* is the overarching program and manages the overall layout.
+>An *app* is the individual website cluster.
+>You can initialize the project without any project by running the following command:```python manage.py runserver```.<br>
 >This should show you the local ip and port you can use as a url.
-
-
+<br><br>
 Next, add the individual app.
 ```
 python manage.py startapp <APP_NAME>
 ```
-
-
+<br><br>
 Now, you should see a new folder in the same directory tree as the project folder
 This could get confusing quick, so I prefer to capitalize the project folder and name the app folders in lowercase.
-
-
+<br>
 ### Creating our first app website
-
+<br>
 We can start by connecting the app to the project.
 Here's how you do that:
 1. **Make your App Known to the Project**
 In your *project* folder, open settings.py.
- _ in the INSTALLED_APPS list, add the name of your app as a string.
+ - in the INSTALLED_APPS list, add the name of your app as a string.
 
 2. **Link the App to the Project**
 Still in your project folder, open urls.py
- _ We need to include one more import into the import section. Your import section should look like this:
+ - We need to include one more import into the import section. Your import section should look like this:
  ```
  from django.contrib import admin
  from django.urls import include,path
  ```
- _ Then, in the list labeled urlpatterns, add the following code:
+ - Then, in the list labeled urlpatterns, add the following code:
  ```
  path("APP_NAME>/", include("<APP_NAME>.urls"))
  ```
@@ -56,7 +51,7 @@ Still in your project folder, open urls.py
 
 3. **Make a Link for the App Webpage**
 In the *app* folder, create a file called urls.py
- _ In your new urls.py file, we are mirroring the format of the urls.py in the project folder. Let's start with an index for the new app:
+ - In your new urls.py file, we are mirroring the format of the urls.py in the project folder. Let's start with an index for the new app:
  ```
  from django.urls import path
  from . import views
@@ -65,21 +60,21 @@ In the *app* folder, create a file called urls.py
     path("", views.index, name ="index")
  ]
  ```
- >This format of linking can be used to make more webpages as needed. 
+ - This format of linking can be used to make more webpages as needed. 
 
 4. **Make a function for the App Webpage**
 Still in the app folder, open up views.py
- _ We need to render our new index link using a function. To start, we can add a function like this:
+ - We need to render our new index link using a function. To start, we can add a function like this:
  ```
  def index(request):
     return render(request, "<app name>/index.html")
     ```
- _ This renders our index webpage if we type in our app name.
+ - This renders our index webpage if we type in our app name.
 
 5. **Make an HTML File for the Webpage**
 We need an actual html file to render.
- _ Create a folder called templates, then another folder named after the app.
- _ In the new directory, add a file called index.html
+ - Create a folder called templates, then another folder named after the app.
+ - In the new directory, add a file called index.html
  -add the HTML for the index page.
 
 Now, if you run ```python manage.py runserver```,you can visit the index you've created using the url for the server + the app name.
