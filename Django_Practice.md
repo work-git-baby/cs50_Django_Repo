@@ -2,56 +2,74 @@
 >*Django is an extemely useful framework for making large-scale websites. It is quite comprehensive, so it's a good opportunity to me to practice markdown.*
 
 ## Getting started
-
 ### Initializing the first project
-<br>
+
 First things first, add django to your python library. 
-```
-pip install django
-```
-<br><br>
-Then, you need to start a new project. In your terminal, run:
-```
-django-admin startproject <PROJECT_NAME>
-```
->Note, there is a difference between a **Project** and an **App**<br>
->A *project* is the overarching program and manages the overall layout.
->An *app* is the individual website cluster.
->You can initialize the project without any project by running the following command:```python manage.py runserver```.<br>
->This should show you the local ip and port you can use as a url.
-<br><br>
-Next, add the individual app.
-```
-python manage.py startapp <APP_NAME>
-```
-<br><br>
-Now, you should see a new folder in the same directory tree as the project folder
-This could get confusing quick, so I prefer to capitalize the project folder and name the app folders in lowercase.
 <br>
+`pip install django`
+<br><br>
+
+Then, you need to start a new project. In your terminal, run <br> 
+`django-admin startproject <PROJECT_NAME>`
+
+> Note, there is a difference between a **Project** and an **App**<br>
+> A *project* is the overarching program and manages the overall layout.<br>
+> An *app* is the individual website cluster.
+
+You can initialize the project without any project by running the following command:
+<br>
+`python manage.py runserver`.
+<br>
+*This should show you the local ip and port you can use as a url.*
+<br><br>
+Next, add the individual app with
+<br>
+`
+python manage.py startapp <APP_NAME>
+`
+<br>
+*Now, you should see a new folder in the same directory tree as the project folder.*
+<br>
+> This could get confusing quick, so I prefer to capitalize the *project folder* and name the *app folders* in lowercase.
+
+<br><br>
+
 ### Creating our first app website
 <br>
-We can start by connecting the app to the project.
-Here's how you do that:
-1. **Make your App Known to the Project**
-In your *project* folder, open settings.py.
- - in the INSTALLED_APPS list, add the name of your app as a string.
+We can start by connecting the app to the project. Here's how you do that:<br>
 
-2. **Link the App to the Project**
-Still in your project folder, open urls.py
- - We need to include one more import into the import section. Your import section should look like this:
+#### **1. Make your App Known to the Project**
+In your *project* folder, open `settings.py`.
+In the `INSTALLED_APPS` list, add the name of your app as a string. It should look like this:
+ ```
+ INSTALLED_APPS = [
+    '<YOUR_APP_NAME>',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+<br>
+
+#### **2. Link the App to the Project**
+Still in your project folder, open `urls.py`<br>
+<br>We need to include one more import, `include`, in order for the project to have access to all the different webpages in the app. Your import section should look like this:
  ```
  from django.contrib import admin
  from django.urls import include,path
  ```
- - Then, in the list labeled urlpatterns, add the following code:
+ Then, in the list labeled `urlpatterns`, add the following code:
  ```
- path("APP_NAME>/", include("<APP_NAME>.urls"))
+ path("<YOUR_APP_NAME>/", include("<APP_NAME>.urls"))
  ```
- This adds your future urls into the overall project. However, the app does not innately have urls. Thus,
+ *This adds your future urls into the overall project. However, the app does not innately have urls. Thus, we need to...*
 
-3. **Make a Link for the App Webpage**
-In the *app* folder, create a file called urls.py
- - In your new urls.py file, we are mirroring the format of the urls.py in the project folder. Let's start with an index for the new app:
+#### **3. Make a Link for the App Webpage**
+In the *app* folder, ***create a file*** called `urls.py`
+ - In your new `urls.py` file, we are semi-mirroring the format of the urls.py in the *project* folder. Let's start with an index for the new app:
  ```
  from django.urls import path
  from . import views
@@ -62,24 +80,25 @@ In the *app* folder, create a file called urls.py
  ```
  - This format of linking can be used to make more webpages as needed. 
 
-4. **Make a function for the App Webpage**
-Still in the app folder, open up views.py
+#### **4. Make a function for the App Webpage**
+Still in the app folder, open up `views.py`
  - We need to render our new index link using a function. To start, we can add a function like this:
  ```
  def index(request):
     return render(request, "<app name>/index.html")
-    ```
- - This renders our index webpage if we type in our app name.
+```
+ *This renders our index webpage if we type in our app name.*
 
-5. **Make an HTML File for the Webpage**
+#### **5. Make an HTML File for the Webpage**
 We need an actual html file to render.
- - Create a folder called templates, then another folder named after the app.
- - In the new directory, add a file called index.html
- -add the HTML for the index page.
+ 1. Create a folder called templates, then another inside that folder named after the app.
+ 2. In the new directory, add a file called `index.html`
+ 3. Add the HTML for the index page.
 
 Now, if you run ```python manage.py runserver```,you can visit the index you've created using the url for the server + the app name.
+<br><br>
 
-This process of making the website is pretty complex, but it is necessary to be familiar with all these different elements in Django in order to streamline manipulating multiple elements. In the next section, we will talk about the different functionalities provided by Django as presented by Harvard's CS50 course.
+>*This process of making a website in Django is pretty complex, but it is necessary to be familiar with all these different elements in Django in order to streamline manipulating multiple elements. In the next section, we will talk about the different functionalities provided by Django as presented by Harvard's CS50 course.*
 
 ## Functionalites provided by Django
 
