@@ -4,22 +4,17 @@
 ## Getting started
 ### Initializing the first project
 
-First things first, add django to your python library. 
-<br>
+First things first, add django to your python library.  
 `pip install django`
-<br><br>
-
-Then, you need to start a new project. In your terminal, run <br> 
-`django-admin startproject <PROJECT_NAME>`
-
-> Note, there is a difference between a **Project** and an **App**<br>
-> A *project* is the overarching program and manages the overall layout.<br>
-> An *app* is the individual website cluster.
-
-You can initialize the project without any project by running the following command:
-<br>
-`python manage.py runserver`.
-<br>
+  
+Then, you need to start a new project. In your terminal, run  
+`django-admin startproject <PROJECT_NAME>`  
+> Note, there is a difference between a **Project** and an **App**  
+> A *project* is the overarching program and manages the overall layout.  
+> An *app* is the individual website cluster.  
+  
+You can initialize the project without any project by running the following command:  
+`python manage.py runserver`  
 *This should show you the local ip and port you can use as a url.*
 <br><br>
 Next, add the individual app with
