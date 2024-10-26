@@ -127,3 +127,7 @@ add installed to settings.py -->INSTALLED_APPS+-
 
 put {% load static %} to replace the css css link with a file somewhere in directory. Useful for big projects.
 
+...
+
+make forms in views.
+
