@@ -99,11 +99,45 @@ We need an actual html file to render.
 Now, if you run ```python manage.py runserver```,you can visit the index you've created using the url for the server + the app name.
 <br><br>
 
->*This process of making a website in Django is pretty complex, but it is necessary to be familiar with all these different elements in Django in order to streamline manipulating multiple elements. In the next section, we will talk about the different functionalities provided by Django as presented by Harvard's CS50 course.*
+>*This process of making a website in Django is pretty complex, but it is necessary to be familiar with all these different elements in Django in order to manipulate multiple elements. In the next section, we will talk about the different functionalities provided by Django as presented by Harvard's CS50 course.*
 
 ## Functionalities Provided by Django
+### Making Parameters for URLs
+A lot of websites are dynamically created with the URL combinations provided. Here, we will give a cursory glance into how Django can help this process by creating a page that returns "Hello _____", depending on what name is passed through the URL address.
 
+#### Making "Hello, _____"
+First off, let's explore the `views.py` in the app folder.  
+For simplicity's sake, we are just going to have Django return an HTTP response to give us an extremely simple website. to do this we need to import Django's http response function like this:  
+```
+from django.shortcuts import render
+from django.http import HttpResponse
+```
+After that, we create a function that calls 2 parameters instead of 1. 
+```
+from django.shortcuts import render
+from django.http import HttpResponse  
+  
+def index(request):
+    return render(request, "<app name>/index.html")
 
+def greet(request, name):
+    return HttpResponse(f"Hello, {name}.")
+```
+In our new function, we are passing the argument `name` into what is returned, using it as a variable in our website that can be changed.  
+  
+
+Next, we need to add our greet function into our url patterns. In our `urls.py` file we need to make our new function known to the app.
+```
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path("", views.index, name ="index")
+    path("<str:name>", views.greet, name="greet"),
+]
+```
+>Note, that this is taking place within our *app* folder, not our *project* one.  
+What `<str:name>` is telling Django is that we are passing a string into the path name and giving it to the function, greet, as a variable. Now, when we type in a name in <Port_Number>/<App_Name>/<Desired_Name>, Django returns the response "Hello, [whatever name you put in the url]".
 
 
  
@@ -114,13 +148,13 @@ Now, if you run ```python manage.py runserver```,you can visit the index you've 
 
 
 
-
+<!--
 3)python manage.py runserver [runs test server, automatically refreshes with changes] 
 [shows local ip and port]
 
 4)python manage.py startapp <APP_NAME> [starts a new app]
 
-add installed to settings.py -->INSTALLED_APPS+-
+add installed to settings.py --INSTALLED_APPS+-
 
 5)visit the new folder created for apps
 
@@ -136,4 +170,4 @@ put {% load static %} to replace the css css link with a file somewhere in direc
 ...
 
 make forms in views.
-
+-->
